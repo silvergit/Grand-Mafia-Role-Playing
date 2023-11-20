@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Grand Role Playing</string>
+    <string name="grand_mafia">Grand Mafia</string>
+    <string name="enter_numbers">Enter numbers</string>
+    <string name="select_roles">Select roles</string>
+    <string name="goorkan">Goorkan</string>
+    <string name="marde_ghavi">Marde ghavi</string>
+    <string name="tofangsaaz">Tofangsaaz</string>
+    <string name="hacker">Hacker</string>
+    <string name="kaboy">Kaboy</string>
+    <string name="billy">Billy</string>
+    <string name="take_screen_shot">Take Screen Shot</string>
+    <string name="image_saved_in_your_gallery">Image saved in your gallery</string>
+    <string name="give_roles_to_players">Give roles to players</string>
+    <string name="language">Language</string>
+    <string name="persian">Persian</string>
+    <string name="english">English</string>
+    <string name="theme">Theme</string>
+    <string name="dark" translatable="false">Dark</string>
+    <string name="about">About</string>
+    <string name="with_love_for_grand_mafia_team" translatable="false">With love for Grand Mafia TEAM</string>
+    <string name="programmer_alireza_pazhouhesh" translatable="false">Programmer: Alireza Pazhouhesh</string>
+    <string name="kotlin_with_jetpack_compose" translatable="false">Kotlin with Jetpack compose</string>
+    <string name="contact">Contact</string>
+    <string name="rubika_channel" translatable="false">Rubika channel</string>
+    <string name="panco_group_grand_mafia" translatable="false">Panco group: @grand_mafia</string>
+    <string name="grand_mafia_team">GRAND MAFIA TEAM</string>
+</resources>

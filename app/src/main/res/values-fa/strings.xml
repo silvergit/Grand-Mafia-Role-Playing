@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">نقش گرند</string>
+    <string name="grand_mafia">گرند مافیا</string>
+    <string name="enter_numbers">ورود اعداد</string>
+    <string name="select_roles">انتخاب نقش ها</string>
+    <string name="goorkan">گورکن</string>
+    <string name="marde_ghavi">مرد قوی</string>
+    <string name="tofangsaaz">تفنگ ساز</string>
+    <string name="hacker">هکر</string>
+    <string name="kaboy">کابوی</string>
+    <string name="billy">بیلی</string>
+    <string name="take_screen_shot">ذخیره در گالری</string>
+    <string name="image_saved_in_your_gallery">تصویر در گالری ذخیره شد</string>
+    <string name="give_roles_to_players">پخش کردن نقش</string>
+    <string name="language">زبان</string>
+    <string name="persian">فرسی</string>
+    <string name="english">English</string>
+    <string name="theme">تم</string>
+    <string name="about">درباره</string>
+    <string name="contact">تماس</string>
+    <string name="grand_mafia_team">تیم گرند مافیا</string>
+</resources>
