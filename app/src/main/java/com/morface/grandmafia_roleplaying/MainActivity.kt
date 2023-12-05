@@ -94,18 +94,20 @@ class MainActivity : BaseActivity() {
 @Composable
 fun AppContent(viewModel: MainViewModel) {
     val enteredNumbers = remember { mutableStateListOf("", "", "", "", "", "", "", "", "") }
-    val chipStates = remember { mutableStateListOf(true, true, true, false) }
+    val chipStates = remember { mutableStateListOf(true, true, true, true, false) }
 
     val cityRoles = listOf(
         stringResource(R.string.tofangsaaz),
         stringResource(R.string.hacker),
         stringResource(R.string.kaboy),
+        stringResource(R.string.mahigir),
         stringResource(R.string.goorkan),
     )
 
     val goorkanStr = stringResource(id = R.string.goorkan)
     val tofangsaazStr = stringResource(id = R.string.tofangsaaz)
     val hakerStr = stringResource(id = R.string.hacker)
+    val mahigir = stringResource(id = R.string.mahigir)
     val kaboyStr = stringResource(id = R.string.kaboy)
 
     var result by remember { mutableStateOf("") }

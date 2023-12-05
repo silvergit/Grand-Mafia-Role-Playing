@@ -83,7 +83,7 @@ fun ScaffoldContent(
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 private fun SelectRolesCard(cityRoles: List<String>, chipStates: SnapshotStateList<Boolean>) {
-    val numbers = List(size = 4) { it + 1 }
+    val numbers = List(size = 5) { it + 1 }
     Card(modifier = Modifier.padding(8.dp)) {
         Column {
             Text(
