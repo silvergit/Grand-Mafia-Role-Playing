@@ -26,4 +26,15 @@
     <string name="panco_group_grand_mafia" translatable="false">Panco group: @grand_mafia</string>
     <string name="grand_mafia_team">GRAND MAFIA TEAM</string>
     <string name="mahigir">Mahigir</string>
+    <string name="Scenario_mahigir">Mahigir</string>
+    <string name="scenario_haker_tofangsaz">Haker - Togangsaz</string>
+    <string name="scenario_haker_togangsaz_kaboy">Haker - Togangsaz - Kaboy</string>
+    <string name="scenario_tofangsaz">Tofangsaz</string>
+    <string name="scenario_tofangsaz_karolin">Tofangsaz - Karolin</string>
+    <string name="scenario_tofangsaz_karolin_nokhbe">Tofangsaz - Karolin - Nokhbe</string>
+    <string name="scenario_nokhbe">Nokhbe</string>
+    <string name="select_a_scenario">Select a scenario</string>
+    <string name="enter_player_numbers">Enter player numbers</string>
+    <string name="Scenario_hacker">Haker</string>
+    <string name="scenario_haker_togangsaz_kaboy_mahigir" >Haker - Togangsaz - Kaboy - Mahigir</string>
 </resources>

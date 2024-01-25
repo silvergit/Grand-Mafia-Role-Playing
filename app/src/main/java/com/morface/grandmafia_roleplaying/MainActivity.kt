@@ -16,15 +16,23 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -46,6 +54,7 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
@@ -64,7 +73,6 @@ import com.morface.grandmafia_roleplaying.ui.theme.GrandRolePlayingTheme
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import kotlin.random.Random
-
 
 class MainActivity : BaseActivity() {
     private val viewModel: MainViewModel = MainViewModel()
@@ -90,30 +98,30 @@ class MainActivity : BaseActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun AppContent(viewModel: MainViewModel) {
     val enteredNumbers = remember { mutableStateListOf("", "", "", "", "", "", "", "", "") }
-    val chipStates = remember { mutableStateListOf(true, true, true, true, false) }
-
-    val cityRoles = listOf(
-        stringResource(R.string.tofangsaaz),
-        stringResource(R.string.hacker),
-        stringResource(R.string.kaboy),
-        stringResource(R.string.mahigir),
-        stringResource(R.string.goorkan),
-    )
-
-    val goorkanStr = stringResource(id = R.string.goorkan)
-    val tofangsaazStr = stringResource(id = R.string.tofangsaaz)
-    val hakerStr = stringResource(id = R.string.hacker)
-    val mahigir = stringResource(id = R.string.mahigir)
-    val kaboyStr = stringResource(id = R.string.kaboy)
 
     var result by remember { mutableStateOf("") }
 
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
+
+    val scenarios = listOf(
+        stringResource(R.string.Scenario_hacker),
+        stringResource(R.string.scenario_haker_tofangsaz),
+        stringResource(R.string.scenario_haker_togangsaz_kaboy),
+        stringResource(R.string.scenario_haker_togangsaz_kaboy_mahigir),
+        stringResource(R.string.scenario_tofangsaz),
+        stringResource(R.string.scenario_tofangsaz_karolin),
+        stringResource(R.string.scenario_tofangsaz_karolin_nokhbe),
+        stringResource(R.string.scenario_nokhbe)
+    )
+
+    var selectedOption by remember { mutableStateOf(scenarios[2]) }
+    val enterPlayerNumbersText = stringResource(R.string.enter_player_numbers)
 
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -134,44 +142,24 @@ fun AppContent(viewModel: MainViewModel) {
                     Button(
                         onClick = {
                             result = ""
-                            val list = mutableListOf<String>()
-                            val selectedCityRoles = mutableListOf<String>()
-
-                            for (i in 0 until cityRoles.count()) {
-                                if (chipStates[i]) selectedCityRoles.add(cityRoles[i])
-                            }
+                            val selectedRules: Int = selectedOption.split(" - ").size
+                            val players = mutableListOf<String>()
 
                             for (i in 0 until enteredNumbers.count()) {
                                 if (enteredNumbers[i] != "") {
-                                    list.add(enteredNumbers[i])
+                                    players.add(enteredNumbers[i])
                                 }
                             }
 
-                            if (list.isNotEmpty()) {
-                                if (list.count() > 3) {
-                                    val randomInts =
-                                        makeRandList(0, list.count(), selectedCityRoles.count())
-                                    for (i in 0 until selectedCityRoles.count()) {
+                            if (players.size >= selectedRules) {
+                                val randomInts =
+                                        makeRandList(0, players.count(), selectedRules)
+                                    for (i in 0 until selectedRules) {
                                         result +=
-                                            "${selectedCityRoles[i]} : ${list[randomInts[i]]}\n"
+                                            "${selectedOption.split(" - ")[i]} : ${players[randomInts[i]]}\n"
                                     }
-                                } else if (list.count() == 3) {
-                                    val randomInts = makeRandList(0, 3, 3)
-                                    result = tofangsaazStr + " : ${list[randomInts[1]]}" +
-                                            "\n" +
-                                            hakerStr + " : ${list[randomInts[0]]}" +
-                                            "\n" +
-                                            kaboyStr + " : ${list[randomInts[2]]}"
-                                } else if (list.count() == 2) {
-                                    val randomInts = makeRandList(0, 2, 2)
-                                    result = hakerStr + " : ${list[randomInts[0]]}" +
-                                            "\n" +
-                                            tofangsaazStr + " : ${list[randomInts[1]]}"
-                                } else if (list.count() == 1) {
-                                    if (goorkanStr in selectedCityRoles) {
-                                        result = goorkanStr + " : ${list[0]}"
-                                    }
-                                }
+                            } else {
+                                result = enterPlayerNumbersText
                             }
                         },
                         shape = MaterialTheme.shapes.small
@@ -182,7 +170,99 @@ fun AppContent(viewModel: MainViewModel) {
             }
         )
         {
-            ScaffoldContent(it, enteredNumbers, cityRoles, chipStates, result)
+            ScaffoldContent(
+                it,
+                enteredNumbers,
+                result,
+                scenarios,
+                selectedOption
+            )
+
+            Column(modifier = Modifier.padding(it)) {
+                Card(modifier = Modifier.padding(8.dp)) {
+                    Column {
+                        Text(
+                            text = stringResource(R.string.enter_numbers),
+                            modifier = Modifier
+                                .background(MaterialTheme.colorScheme.secondary)
+                                .padding(4.dp)
+                                .fillMaxWidth(),
+                            color = MaterialTheme.colorScheme.onSecondary
+                        )
+                        LazyVerticalGrid(
+                            columns = GridCells.Fixed(3),
+                            modifier = Modifier.padding(start = 8.dp, top = 8.dp, bottom = 8.dp)
+                        ) {
+                            items(9) { index ->
+                                TextField(
+                                    value = enteredNumbers[index],
+                                    onValueChange = { value ->
+                                        enteredNumbers[index] = value
+                                    },
+                                    keyboardOptions = KeyboardOptions(
+                                        keyboardType = KeyboardType.Number
+                                    ),
+                                    modifier = Modifier.padding(horizontal = 8.dp)
+                                )
+                            }
+                        }
+                    }
+                }
+                Spacer(modifier = Modifier.height(4.dp))
+                Card(modifier = Modifier.padding(8.dp)) {
+                    Column() {
+                        Text(
+                            text = stringResource(R.string.select_roles),
+                            modifier = Modifier
+                                .background(MaterialTheme.colorScheme.secondary)
+                                .padding(4.dp)
+                                .fillMaxWidth(),
+                            color = MaterialTheme.colorScheme.onSecondary
+                        )
+                        //DropDown
+                        var expanded by remember { mutableStateOf(false) }
+                        Box(modifier=Modifier.padding(8.dp)) {
+                            ExposedDropdownMenuBox(
+                                expanded = expanded,
+                                onExpandedChange = { expanded = !expanded },
+                            ) {
+                                TextField(
+                                    modifier = Modifier
+                                        .menuAnchor()
+                                        .fillMaxWidth(),
+                                    readOnly = true,
+                                    value = selectedOption,
+                                    onValueChange = {},
+                                    label = { Text(stringResource(R.string.select_a_scenario)) },
+                                    trailingIcon = {
+                                        ExposedDropdownMenuDefaults.TrailingIcon(
+                                            expanded = expanded
+                                        )
+                                    },
+                                    colors = ExposedDropdownMenuDefaults.textFieldColors(),
+                                )
+                                ExposedDropdownMenu(
+                                    expanded = expanded,
+                                    onDismissRequest = { expanded = false },
+                                ) {
+                                    scenarios.forEach { selected ->
+                                        DropdownMenuItem(
+                                            text = { Text(selected) },
+                                            onClick = {
+                                                selectedOption = selected
+                                                expanded = false
+                                            },
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                        ShowResults(result)
+                    }
+
+
+                }
+            }
         }
     }
 }

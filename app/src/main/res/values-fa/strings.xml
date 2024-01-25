@@ -21,4 +21,15 @@
     <string name="contact">تماس</string>
     <string name="grand_mafia_team">تیم گرند مافیا</string>
     <string name="mahigir">ماهیگیر</string>
+    <string name="Scenario_mahigir">ماهیگیر</string>
+    <string name="scenario_haker_tofangsaz">هکر - تفنگساز</string>
+    <string name="scenario_haker_togangsaz_kaboy">هکر - تفنگساز - کابوی</string>
+    <string name="scenario_tofangsaz">تفنگساز</string>
+    <string name="scenario_tofangsaz_karolin">تفنگساز - کارولین</string>
+    <string name="scenario_tofangsaz_karolin_nokhbe">تفنگساز - کارولین - نخبه</string>
+    <string name="scenario_nokhbe">نخبه</string>
+    <string name="select_a_scenario">انتخاب سناریو</string>
+    <string name="enter_player_numbers">اعداد بازیکنان را وارد کنید.</string>
+    <string name="Scenario_hacker">هکر</string>
+    <string name="scenario_haker_togangsaz_kaboy_mahigir">هکر - تفنگساز - کابوی - ماهیگیر</string>
 </resources>

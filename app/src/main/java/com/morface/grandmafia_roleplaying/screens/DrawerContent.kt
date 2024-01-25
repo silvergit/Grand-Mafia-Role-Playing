@@ -47,12 +47,6 @@ fun DrawerContent(viewModel: MainViewModel) {
     var bannerImageId by remember {
         mutableStateOf(R.drawable.usa_flag_round_icon_64)
     }
-//    var darkModeIconId by remember {
-//        mutableStateOf(R.drawable.baseline_dark_mode_white_24)
-//    }
-//    var lightModeIconId by remember {
-//        mutableStateOf(R.drawable.baseline_light_mode_white_24)
-//    }
 
     val darkStr: String = stringResource(R.string.dark)
 
@@ -62,12 +56,8 @@ fun DrawerContent(viewModel: MainViewModel) {
 
     bannerImageId = if (enableDarkItems) {
         R.drawable.grandmafia_light
-//        darkModeIconId = R.drawable.baseline_dark_mode_white_24
-//        lightModeIconId = R.drawable.baseline_light_mode_white_24
     } else {
         R.drawable.grandmafia_dark
-//        darkModeIconId = R.drawable.baseline_dark_mode_24
-//        lightModeIconId = R.drawable.baseline_light_mode_24
     }
 
 
@@ -96,24 +86,6 @@ fun DrawerContent(viewModel: MainViewModel) {
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-//            stickyHeader {
-//                NavListHeraders(text = stringResource(R.string.language))
-//            }
-//            item {
-//                NavListItems(
-//                    bitmap = R.drawable.iran_flag_round_icon_64,
-//                    text = stringResource(R.string.persian),
-//                    onEvent = { BaseActivity.dLocale = Locale("fa") }
-//                )
-//            }
-//            item { Divider(thickness = 1.dp) }
-//            item {
-//                NavListItems(
-//                    bitmap = R.drawable.usa_flag_round_icon_64,
-//                    text = stringResource(R.string.english),
-//                    onEvent = { BaseActivity.dLocale = Locale("en") }
-//                )
-//            }
             item { Spacer(modifier = Modifier.height(8.dp)) }
             stickyHeader {
                 NavListHeaders(text = stringResource(R.string.theme))
@@ -138,7 +110,6 @@ fun DrawerContent(viewModel: MainViewModel) {
                 }
             }
         )
-        Divider(thickness = 1.dp)
         Divider(thickness = 1.dp)
         //
         NavListHeaders(text = stringResource(R.string.about))

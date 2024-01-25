@@ -58,23 +58,4 @@ fun saveToGallery(context: Context, bitmap: Bitmap, albumName: String) {
         val image = File(imagesDir, filename)
         write(FileOutputStream(image))
     }
-
-//    val imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
-//        .toString() + File.separator + albumName
-//    val file = File(imagesDir)
-//    if (!file.exists()) {
-//        file.mkdir()
-//    }
-//    val image = File(imagesDir, filename)
-//    val uri = image.toURI()
-//    sharePalette(uri, context)
-
 }
-
-//private fun sharePalette(uri: URI, context: Context) {
-//    val sharingIntent = Intent(Intent.ACTION_SEND)
-//    sharingIntent.type = "image/*"
-//    sharingIntent.putExtra(Intent.EXTRA_STREAM, uri)
-//
-//    context.startActivities(arrayOf(Intent.createChooser(sharingIntent, "Share with")))
-//}
